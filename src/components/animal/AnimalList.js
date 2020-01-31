@@ -1,26 +1,37 @@
 import React, { useContext } from "react"
 import { AnimalContext } from "./AnimalProvider"
-import { LocationContext } from "../location/LocationProvider"
-import { CustomerContext } from "../customer/CustomerProvider"
+import AnimalForm from "./AnimalForm"
 import Animal from "./Animal"
 import "./Animals.css"
 
-export default () => {
+export default (props) => {
     const { animals } = useContext(AnimalContext)
-    const { locations } = useContext(LocationContext)
-    const { customers } = useContext(CustomerContext)
+    
+    const existingUserCheck = () => {
+        if (localStorage.getItem("kennel_customer") !== null) {
+            return true
+        }
+        else {
+            return false
+        }
+    }
 
     return (
         <div className="animals">
+            <button onClick={() => {
+                if (existingUserCheck() === true) {
+                    props.history.push("/animals/create")
+                } else {
+                    props.history.push("/")
+                }
+            }}>
+                Make Appointment 
+            </button>
             {
                 animals.map(animal => {
-                    const owner = customers.find(c => c.id === animal.customerId)
-                    const clinic = locations.find(l => l.id === animal.locationId)
 
                     return <Animal key={animal.id}
-                                location={clinic}
-                                customer={owner}
-                                animal={animal} />
+                            animal={animal} />
             })}
         </div>
     )

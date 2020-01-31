@@ -14,7 +14,7 @@ export const EmployeeProvider = (properties) => {
     const [employees, setEmployees] = useState([])
 
     const getEmployees = () => {
-        return fetch("http://localhost:8088/employees")
+        return fetch("http://localhost:8088/employees?_expand=location")
             .then(res => res.json())
             .then(setEmployees)
     }
@@ -26,6 +26,13 @@ export const EmployeeProvider = (properties) => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(employee)
+        })
+            .then(getEmployees)
+    }
+
+    const releaseEmployee = employeeId => {
+        return fetch(`http://localhost:8088/employees/${employeeId}`, {
+            method: "DELETE"
         })
             .then(getEmployees)
     }
@@ -45,7 +52,7 @@ export const EmployeeProvider = (properties) => {
 
    return (
        <EmployeeContext.Provider value={{
-           employees, addEmployee
+           employees, addEmployee, releaseEmployee
        }}>
            {properties.children}
        </EmployeeContext.Provider>

@@ -1,12 +1,18 @@
 .employees {
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
     justify-content: space-between;
   }
   
   .employee {
+      max-width: 30%;
       flex-basis: 28%;
       margin: 1em;
       padding: 1em;
       border: 1px solid goldenrod;
+  }
+
+  .addEmployee {
+      max-width: 30%;
   }

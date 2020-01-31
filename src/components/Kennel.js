@@ -6,7 +6,7 @@ import "./Kennel.css"
 
 export default () => (
     <>
-    <NavBar />
-    <ApplicationViews />
+        <Route render={props => <NavBar {...props} />} />
+        <Route render={props => <ApplicationViews {...props} />} />
     </>
 )

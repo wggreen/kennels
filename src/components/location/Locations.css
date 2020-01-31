@@ -10,3 +10,51 @@
       padding: 1em;
       border: 1px solid goldenrod;
   }
+
+  .locations__animalsListSection {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+  }
+
+  .locations__animalsListHeader {
+      margin-right: 0px;
+  }
+
+  .locations__animalsList {
+    display: inline;
+    list-style: none;
+    margin: 0px;
+    padding-left: 10px;
+    padding-top: 25px;
+  }
+  
+  .locations__animalsList li {
+    display: inline;
+  }
+  
+  .locations__animalsList li:after {
+    content: ", ";
+  }
+
+  .locations__animalsList li:last-child:after {
+    content: "";
+}
+
+.locations__employeesList {
+    display: inline;
+    list-style: none;
+    padding: 0px;
+}
+
+.locations__employeesList li {
+    display: inline;
+}
+
+.locations__employeesList li:after {
+    content: ", ";
+}
+
+.locations__employeesList li:last-child:after {
+    content: "";
+}
